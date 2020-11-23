@@ -8,6 +8,7 @@ using VehicleBehaviour;
 public class BoostBar : MonoBehaviour
 {
     Image _boostBar;
+    public Image _boostBarBG;
     public WheelVehicle _PlayerRef; 
     
     // Start is called before the first frame update
@@ -15,11 +16,13 @@ public class BoostBar : MonoBehaviour
     {
         _boostBar = GetComponent<Image>();
         _boostBar.fillAmount = 1;
+        _boostBarBG.fillAmount = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         _boostBar.fillAmount = _PlayerRef.Boost/_PlayerRef.MaxBoost;
+        _boostBarBG.fillAmount = _PlayerRef.Boost/_PlayerRef.MaxBoost;
     }
 }
