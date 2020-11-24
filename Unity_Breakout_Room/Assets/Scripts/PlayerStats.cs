@@ -5,10 +5,10 @@ using Photon.Pun;
 using System;
 using VehicleBehaviour;
 
-public class PlayerStats : MonoBehaviourPunCallbacks
+public class PlayerStats : MonoBehaviourPun,IPunObservable
 {
     public static PlayerStats Instance;
-    public int Health;
+    public float Health;
 
     [SerializeField] PowerUps _powerstats;
 
@@ -26,6 +26,8 @@ public class PlayerStats : MonoBehaviourPunCallbacks
     bool foundtarget;
     public LayerMask PlayerLayer;
     public int ReSpawn_Time = 3;
+    private bool valueRecive;
+    float lastHealth;
     void Awake()
     {
         if (Instance == null)
@@ -61,6 +63,10 @@ public class PlayerStats : MonoBehaviourPunCallbacks
     void Update()
     {
         Rockets();
+        if (!photonView.IsMine && valueRecive)
+        {
+            Health = lastHealth;
+        }
     }
 
     private void OnDrawGizmos()
@@ -162,6 +168,19 @@ public class PlayerStats : MonoBehaviourPunCallbacks
         Health = 100;
 
 
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(Health);
+        }
+        else
+        {
+            this.lastHealth = (float)stream.ReceiveNext();
+            valueRecive = true;
+        }
     }
 }
 [Serializable]

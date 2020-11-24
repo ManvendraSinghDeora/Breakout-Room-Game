@@ -2752,6 +2752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnArea_CenterPoint: {fileID: 520987456}
   playerFollow: {fileID: 963194230}
+  SpawnArea_Radius: 130
   PlayerPrefab: {fileID: 3393898417743898522, guid: f47d75d31fd73d24b83f3bb7c68cb971, type: 3}
 --- !u!4 &1860505095
 Transform:
@@ -2898,3 +2899,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4464037035538270363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4464037034976703278, guid: 2804d3978f9bfc5459e3e94393ee88dd, type: 3}
+  m_PrefabInstance: {fileID: 4464037035538270360}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4464037035538270364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464037035538270363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

@@ -24,7 +24,7 @@ public class Gun : MonoBehaviourPun
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                var Bul = PhotonNetwork.Instantiate("Bullet", GunPointer.transform.position, Quaternion.identity);
+                GameObject Bul = PhotonNetwork.Instantiate("Bullet", GunPointer.transform.position, Quaternion.identity);
                 Bul.GetComponent<BulletScript>().Setup(directioncal());
 
             }

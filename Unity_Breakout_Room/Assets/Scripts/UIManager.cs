@@ -46,7 +46,9 @@ public class UIManager : MonoBehaviourPun
     void UpdateBoostandHealth()
     {
         _healthBar.fillAmount =Player.GetComponent<PlayerStats>().Health / 100;
+        Debug.Log(Player.GetComponent<PlayerStats>().Health / 100);
         _boostbar.fillAmount = Player.GetComponent<WheelVehicle>().Boost / Player.GetComponent<WheelVehicle>().MaxBoost;
         _boostbarbg.fillAmount = Player.GetComponent<WheelVehicle>().Boost / Player.GetComponent<WheelVehicle>().MaxBoost;
     }
+
 }
