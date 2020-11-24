@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Gun : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            var Bul = Instantiate(BulletPrefab, GunPointer.transform.position, Quaternion.identity);
+            var Bul = PhotonNetwork.Instantiate("Bullet", GunPointer.transform.position, Quaternion.identity);
             Bul.GetComponent<BulletScript>().Setup(directioncal());
 
         }

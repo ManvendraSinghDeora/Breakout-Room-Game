@@ -20203,6 +20203,7 @@ GameObject:
   - component: {fileID: 3394964486091246870}
   - component: {fileID: 6165423663297196030}
   - component: {fileID: 1309433179}
+  - component: {fileID: -1457839301015064774}
   m_Layer: 0
   m_Name: Jeep1
   m_TagString: Player
@@ -20645,6 +20646,18 @@ MonoBehaviour:
   GunPointer: {fileID: 967096831}
   GunBackside: {fileID: 214151593}
   BulletPrefab: {fileID: 5939550119077107977, guid: 691ecdb9c52915843b9b075f37235633, type: 3}
+--- !u!114 &-1457839301015064774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3393898417743898522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1233414cc6f06034b8b56fc851202283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3393908319687860766
 GameObject:
   m_ObjectHideFlags: 0
