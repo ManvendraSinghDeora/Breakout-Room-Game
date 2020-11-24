@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class BulletScript : MonoBehaviour
+public class BulletScript : MonoBehaviourPun
 {
     #region Public Declarations
 
@@ -31,8 +32,15 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision _collision)
     {
-        PlayerStats.Instance.Health -= Damage;
-        Destroy(this.gameObject);
+        if (!photonView)
+        {
+            _collision.gameObject.GetComponent<PlayerStats>().Health -= Damage;
+            Destroy(this.gameObject);
+        }
+        if (_collision.gameObject.tag == "Environment")
+        {   
+            Destroy(this.gameObject);
+        }
     }
     private void OnTriggerEnter(Collider _collider)
     {
