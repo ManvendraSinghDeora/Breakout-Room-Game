@@ -20,12 +20,14 @@ public class Rocket : MonoBehaviourPun
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 dir = Target.position - rb.position;
-        dir.Normalize();
-        Vector3 rotateAmount = Vector3.Cross(transform.up, dir);
-        rb.angularVelocity = rotateAmount*rotateSpeed;
-        rb.velocity = transform.up * Speed;
-    
+        if (Target != null)
+        {
+            Vector3 dir = Target.position - rb.position;
+            dir.Normalize();
+            Vector3 rotateAmount = Vector3.Cross(transform.up, dir);
+            rb.angularVelocity = rotateAmount * rotateSpeed;
+            rb.velocity = transform.up * Speed;
+        }
     }
 
     void OnCollisionEnter(Collision other)

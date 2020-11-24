@@ -20615,6 +20615,7 @@ MonoBehaviour:
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 512
+  ReSpawn_Time: 3
 --- !u!114 &6165423663297196030
 MonoBehaviour:
   m_ObjectHideFlags: 0
