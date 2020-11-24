@@ -20605,8 +20605,9 @@ MonoBehaviour:
     NoOfMines: 4
     DamagePerMines: 40
   isProtected: 0
-  hasrockets: 1
+  hasrockets: 0
   HasMines: 0
+  AllEnemyPlayer: []
 --- !u!114 &6165423663297196030
 MonoBehaviour:
   m_ObjectHideFlags: 0

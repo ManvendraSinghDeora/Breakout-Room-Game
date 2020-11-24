@@ -30,12 +30,16 @@ public class Rocket : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag=="Player")
+        if(!other.gameObject==this.gameObject)
         {
-            PlayerStats.Instance.Health -= Damage;
-            //Instantiate(explosion, transform.position,Quaternion.identity);
-            Destroy(this.gameObject);
+            if (other.gameObject.tag == "Player")
+            {
+                PlayerStats.Instance.Health -= Damage;
+                //Instantiate(explosion, transform.position,Quaternion.identity);
+                Destroy(this.gameObject);
+            }
         }
+        
      
     }
 }

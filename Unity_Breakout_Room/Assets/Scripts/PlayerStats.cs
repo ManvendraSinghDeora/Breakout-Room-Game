@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 using System;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviourPunCallbacks
 {
     public static PlayerStats Instance;
     public int Health;
@@ -18,7 +19,7 @@ public class PlayerStats : MonoBehaviour
     int noofrockets;
     GameObject LockedNearestTarget;
     GameObject [] Players;
-    List<GameObject> AllEnemyPlayer;
+    public List<GameObject> AllEnemyPlayer;
     void Awake()
     {
         if (Instance == null)
@@ -27,28 +28,35 @@ public class PlayerStats : MonoBehaviour
 
         }
         Health = MaxHealth;
+        _powerstats.InizitlizeValues();
         Players = GameObject.FindGameObjectsWithTag("Player");
-        for(int i=0;i<Players.Length ; i++)
-        {
-            if(Players[i]!=this.gameObject)
-            {
-                AllEnemyPlayer.Add(Players[i]);
-            }
-        }
         noofrockets = _powerstats.NoOfRockets;
+        FindallPlayers();
     }
     void Start()
     {
 
     }
-
+    
+    void FindallPlayers()
+    {
+        AllEnemyPlayer = new List<GameObject>();
+        for (int i = 0; i < Players.Length; i++)
+        {
+            if (!photonView.IsMine)
+            {
+                AllEnemyPlayer.Add(Players[i]);
+            }
+        }
+        
+    }
     // Update is called once per frame
     void Update()
     {
         Rockets();
     }
 
-    void Rockets()
+    public void Rockets()
     {
         if (hasrockets)
         {
@@ -57,17 +65,21 @@ public class PlayerStats : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.R))
                 {
+                    FindallPlayers();
                     Collider[] _col = Physics.OverlapSphere(transform.position, _powerstats.FireRadiusRockets);
                     if (_col.Length > 0)
                     {
                         for(int i=0;i<_col.Length;i++)
                         {
-                           if(_col[i].gameObject==AllEnemyPlayer[i])
+                            for (int j = 0; j < AllEnemyPlayer.Count; j++)
                             {
-                                LockedNearestTarget = AllEnemyPlayer[i];
-                                FireRockets();
-                                noofrockets -= 1;
-                                break;
+                                if (_col[i].gameObject == AllEnemyPlayer[j])
+                                {
+                                    LockedNearestTarget = AllEnemyPlayer[j];
+                                    FireRockets();
+                                    noofrockets -= 1;
+                                    break;
+                                }
                             }
                         }
                     }
@@ -77,12 +89,15 @@ public class PlayerStats : MonoBehaviour
                 noofrockets = _powerstats.NoOfRockets;
                 hasrockets = false;
             }
+        }else
+        {
+            return;
         }
     }
 
     private void FireRockets()
     {
-        GameObject temp= Instantiate(_powerstats._rockets, transform.position, Quaternion.identity);
+        GameObject temp= PhotonNetwork.Instantiate("RocketPrefab", transform.position, Quaternion.identity);
         temp.GetComponent<Rigidbody>().AddForce(transform.up * 10, ForceMode.Impulse);
         temp.GetComponent<Rocket>().Target = LockedNearestTarget.transform;
         temp.GetComponent<Rocket>().Damage = _powerstats.DamagePerRocket;
@@ -106,7 +121,7 @@ public class PowerUps
     public int NoOfMines;
     public int DamagePerMines;
 
-
+    ConstantValues _constant = new ConstantValues();
 
     public void Rockets()
     {
@@ -133,5 +148,10 @@ public class PowerUps
         }
     }
 
+    public void InizitlizeValues()
+    {
+        FireRadiusRockets = _constant.RocketFireRange;
+        NoOfRockets = _constant.NumberofRockets;
+    }
 }
 
