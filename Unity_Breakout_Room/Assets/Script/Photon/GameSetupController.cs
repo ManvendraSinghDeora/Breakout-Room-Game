@@ -7,106 +7,33 @@ using Photon.Realtime;
 using Photon.Pun;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using VehicleBehaviour;
 
 public class GameSetupController : MonoBehaviourPunCallbacks
 {
 
-    public List<Transform> spawnPostion;
-    public List<GameObject> ScorePanle;
-    public List<Color> colors;
-    private int spawnIndex;
-    private int count;
-    GameObject temp;
-    int range;
-    void Start()
+    GameObject v_CurrentPlayer;
+    public Transform SpawnArea_CenterPoint;
+    public PlayerFollow playerFollow;
+    float SpawnArea_Radius =130;
+    public GameObject PlayerPrefab;
+    void Awake()
     {
         CreatePlayer();
     }
     private void CreatePlayer()
     {
-        Time.timeScale = 1;
-        //GameObject temp = PhotonNetwork.Instantiate("Player Prefab", spawnPostion[0].position, Quaternion.Euler(0, 180, 0));
-        range = Random.Range(0, spawnPostion.Count);
+       
 
-        temp = PhotonNetwork.Instantiate("Player Prefab", spawnPostion[range].position, Quaternion.Euler(0, 180, 0));
-        //temp.GetComponent<PhotonView>().RPC("ColorChage", RpcTarget.AllBuffered, null);
-
-        #region
-        /*
-        //for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-        //{
-
-        //    Debug.Log("PLAYER :" + PhotonNetwork.PlayerList[i].ActorNumber);
-        //    switch (PhotonNetwork.CurrentRoom.Players.ElementAt(i).Key)
-        //    {
-        //        case 1:
-
-        //            temp = PhotonNetwork.Instantiate("Player Prefab", spawnPostion[i].position, Quaternion.Euler(0, 180, 0));
-        //            temp.GetComponentInChildren<SkinnedMeshRenderer>().material.color = colors[i];
-        //            break;
-        //        case 2:
-        //            temp = PhotonNetwork.Instantiate("Player Prefab", spawnPostion[i].position, Quaternion.Euler(0, 180, 0));
-        //            temp.GetComponentInChildren<SkinnedMeshRenderer>().material.color = colors[i];
-        //            break;
-        //        case 3:
-        //            temp = PhotonNetwork.Instantiate("Player Prefab", spawnPostion[i].position, Quaternion.Euler(0, 180, 0));
-        //            temp.GetComponentInChildren<SkinnedMeshRenderer>().material.color = colors[i];
-        //            break;
-        //        case 4:
-        //            temp = PhotonNetwork.Instantiate("Player Prefab", spawnPostion[i].position, Quaternion.Euler(0, 180, 0));
-        //            temp.GetComponentInChildren<SkinnedMeshRenderer>().material.color = colors[i];
-        //            break;
-        //    }
-        //}
-
-        var pv = PhotonNetwork.CurrentRoom.Players.ElementAt(0);
-        Debug.Log("Vlue of PV :" + pv);
-        */
-        #endregion
+        v_CurrentPlayer = PhotonNetwork.Instantiate(PlayerPrefab.name, RandomPointinArea(SpawnArea_CenterPoint.position,Vector3.up,SpawnArea_Radius),Quaternion.identity);
+        playerFollow.Target = v_CurrentPlayer.transform;
+        v_CurrentPlayer.GetComponent<Rigidbody>().useGravity = true;
+        v_CurrentPlayer.GetComponent<WheelVehicle>().enabled = true;
+        v_CurrentPlayer.GetComponent<EngineSoundManager>().enabled = true;
     }
 
 
-    //[PunRPC]
-    //public void ColorChage()
-    //{
-    //    if (temp.GetComponent<PhotonView>().IsMine)
-    //    {
-    //        temp.GetComponentInChildren<SkinnedMeshRenderer>().material.color = colors[range];
-    //    }
-    //}
-    public float timeRemaining = 60;
-    public Text time;
-
-    private void Update()
-    {
-        if (timeRemaining > 0)
-        {
-            timeRemaining -= Time.deltaTime;
-            int value = (int)timeRemaining;
-            time.text = value.ToString();
-
-        }
-
-        if (timeRemaining <=0)
-        {
-            Time.timeScale = 0;
-        }
-
-        if (count != PhotonNetwork.PlayerList.Length)
-        {
-            foreach (GameObject item in ScorePanle)
-            {
-                item.SetActive(false);
-            }
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-            {
-                ScorePanle[i].SetActive(true);
-            }
-            count = PhotonNetwork.PlayerList.Length;
-        }
-    }
-
-    public void OnUserLeaveRoom()
+     public void OnUserLeaveRoom()
     {
         if (PhotonNetwork.InRoom && !PhotonNetwork.IsMasterClient)
         {
@@ -121,5 +48,27 @@ public class GameSetupController : MonoBehaviourPunCallbacks
             SceneManager.LoadScene(0);
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(SpawnArea_CenterPoint.position, 130);
+    }
+
+    private Vector3 RandomPointinArea(Vector3 position, Vector3 normal, float radius)
+    {
+        Vector3 randomPoint;
+
+        do
+        {
+            randomPoint = Vector3.Cross(Random.insideUnitSphere, normal);
+        } while (randomPoint == Vector3.zero);
+
+        randomPoint.Normalize();
+        randomPoint *= radius;
+        randomPoint += position;
+
+        return randomPoint;
+    }
 
 }
+
