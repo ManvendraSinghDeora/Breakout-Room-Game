@@ -102,6 +102,18 @@ public class PlayerStats : MonoBehaviourPunCallbacks
         temp.GetComponent<Rocket>().Target = LockedNearestTarget.transform;
         temp.GetComponent<Rocket>().Damage = _powerstats.DamagePerRocket;
     }
+
+
+    public void TakeDamage(int Damage)
+    {
+        if (Health - Damage > 0)
+        {        
+                Health -= Damage;
+        }else
+        {
+            //Death();
+        }
+    }
 }
 [Serializable]
 public class PowerUps 

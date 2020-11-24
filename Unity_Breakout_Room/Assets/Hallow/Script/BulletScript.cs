@@ -22,6 +22,7 @@ public class BulletScript : MonoBehaviourPun
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        StartCoroutine(Autodestroy());
     }
 
     private void Update()
@@ -32,18 +33,38 @@ public class BulletScript : MonoBehaviourPun
 
     private void OnCollisionEnter(Collision _collision)
     {
-        if (!photonView)
+        if (_collision.gameObject.tag == "Player")
         {
-            _collision.gameObject.GetComponent<PlayerStats>().Health -= Damage;
-            Destroy(this.gameObject);
+            if (!_collision.gameObject.GetPhotonView().IsMine)
+            {
+                _collision.gameObject.GetComponent<PlayerStats>().Health -= Damage;
+                Destroy(this.gameObject);
+            }
         }
         if (_collision.gameObject.tag == "Environment")
-        {   
+        {
             Destroy(this.gameObject);
         }
     }
-    private void OnTriggerEnter(Collider _collider)
+    private void OnCollisionStay(Collision _collision)
     {
-
+        if (_collision.gameObject.tag == "Player")
+        {
+            if (!_collision.gameObject.GetPhotonView().IsMine)
+            {
+                _collision.gameObject.GetComponent<PlayerStats>().TakeDamage(Damage);
+                PhotonNetwork.Instantiate("BulletBlastParticle", transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+            }
+        }
+        if (_collision.gameObject.tag == "Environment")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    IEnumerator Autodestroy()
+    {
+        yield return new WaitForSeconds(4);
+        Destroy(this.gameObject);
     }
 }

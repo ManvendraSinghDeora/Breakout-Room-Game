@@ -4827,6 +4827,7 @@ GameObject:
   - component: {fileID: 919132149280535069}
   - component: {fileID: 919132149280535067}
   - component: {fileID: 3354310570400120308}
+  - component: {fileID: 670831776506753778}
   m_Layer: 0
   m_Name: RocketPrefab
   m_TagString: Untagged
@@ -4966,3 +4967,15 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &670831776506753778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6448057445596982289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1233414cc6f06034b8b56fc851202283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
