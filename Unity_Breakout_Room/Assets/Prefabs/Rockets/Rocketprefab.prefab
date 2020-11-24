@@ -4827,7 +4827,7 @@ GameObject:
   - component: {fileID: 919132149280535069}
   - component: {fileID: 919132149280535067}
   m_Layer: 0
-  m_Name: Rocket
+  m_Name: Rocketprefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4940,6 +4940,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 0}
   Target: {fileID: 0}
-  Speed: 40
+  Speed: 30
   rotateSpeed: 180
   Damage: 0
