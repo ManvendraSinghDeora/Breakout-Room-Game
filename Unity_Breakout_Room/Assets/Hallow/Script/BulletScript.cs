@@ -37,7 +37,7 @@ public class BulletScript : MonoBehaviourPun
         {
             if (!_collision.gameObject.GetPhotonView().IsMine)
             {
-                _collision.gameObject.GetComponent<PlayerStats>().Health -= Damage;
+                _collision.transform.GetComponent<PlayerStats>().Health -= Damage;
                 Destroy(this.gameObject);
             }
         }
@@ -52,7 +52,7 @@ public class BulletScript : MonoBehaviourPun
         {
             if (!_collision.gameObject.GetPhotonView().IsMine)
             {
-                _collision.gameObject.GetComponent<PlayerStats>().TakeDamage(Damage);
+                _collision.transform.GetComponent<PlayerStats>().TakeDamage(Damage);
                 PhotonNetwork.Instantiate("BulletBlastParticle", transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }

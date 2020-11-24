@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Rocket : MonoBehaviour
+using Photon.Pun;
+public class Rocket : MonoBehaviourPun
 {
     public GameObject explosion;
     public Transform Target;
@@ -30,11 +30,13 @@ public class Rocket : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if(!other.gameObject==this.gameObject)
-        {
+
+        Debug.Log("Rocket Hit : "+other.gameObject.name);
             if (other.gameObject.tag == "Player")
             {
-                PlayerStats.Instance.Health -= Damage;
+            if(!other.gameObject.GetPhotonView().IsMine)
+                
+                other.transform.GetComponent<PlayerStats>().TakeDamage ( Damage);
                 //Instantiate(explosion, transform.position,Quaternion.identity);
                 Destroy(this.gameObject);
             }
@@ -42,4 +44,4 @@ public class Rocket : MonoBehaviour
         
      
     }
-}
+

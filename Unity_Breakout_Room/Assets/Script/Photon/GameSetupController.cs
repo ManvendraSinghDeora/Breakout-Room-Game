@@ -15,7 +15,7 @@ public class GameSetupController : MonoBehaviourPunCallbacks
     GameObject v_CurrentPlayer;
     public Transform SpawnArea_CenterPoint;
     public PlayerFollow playerFollow;
-    float SpawnArea_Radius =130;
+    public float SpawnArea_Radius =130;
     public GameObject PlayerPrefab;
     void Awake()
     {
@@ -54,7 +54,7 @@ public class GameSetupController : MonoBehaviourPunCallbacks
         Gizmos.DrawWireSphere(SpawnArea_CenterPoint.position, 130);
     }
 
-    private Vector3 RandomPointinArea(Vector3 position, Vector3 normal, float radius)
+    public Vector3 RandomPointinArea(Vector3 position, Vector3 normal, float radius)
     {
         Vector3 randomPoint;
 

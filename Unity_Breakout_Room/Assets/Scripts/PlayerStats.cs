@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System;
+using VehicleBehaviour;
 
 public class PlayerStats : MonoBehaviourPunCallbacks
 {
@@ -17,11 +18,14 @@ public class PlayerStats : MonoBehaviourPunCallbacks
 
     int MaxHealth = 100;
     int noofrockets;
-    GameObject LockedNearestTarget;
+    public GameObject LockedNearestTarget;
+    public GameObject temp;
     GameObject [] Players;
     public List<GameObject> AllEnemyPlayer;
-
+    public Collider[] _col;
     bool foundtarget;
+    public LayerMask PlayerLayer;
+    public int ReSpawn_Time = 3;
     void Awake()
     {
         if (Instance == null)
@@ -31,7 +35,7 @@ public class PlayerStats : MonoBehaviourPunCallbacks
         }
         Health = MaxHealth;
         _powerstats.InizitlizeValues();
-        Players = GameObject.FindGameObjectsWithTag("Player");
+       
         noofrockets = _powerstats.NoOfRockets;
         FindallPlayers();
     }
@@ -42,10 +46,11 @@ public class PlayerStats : MonoBehaviourPunCallbacks
     
     void FindallPlayers()
     {
+        Players = GameObject.FindGameObjectsWithTag("Player");
         AllEnemyPlayer = new List<GameObject>();
         for (int i = 0; i < Players.Length; i++)
         {
-            if (!photonView.IsMine)
+            if (!Players[i].GetPhotonView().IsMine)
             {
                 AllEnemyPlayer.Add(Players[i]);
             }
@@ -56,6 +61,12 @@ public class PlayerStats : MonoBehaviourPunCallbacks
     void Update()
     {
         Rockets();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, _powerstats.FireRadiusRockets);
     }
 
     public void Rockets()
@@ -69,7 +80,7 @@ public class PlayerStats : MonoBehaviourPunCallbacks
                 {
                     foundtarget = false;
                     FindallPlayers();
-                    Collider[] _col = Physics.OverlapSphere(transform.position, _powerstats.FireRadiusRockets);
+                    _col = Physics.OverlapSphere(transform.position, _powerstats.FireRadiusRockets,PlayerLayer);
                     if (_col.Length > 0)
                     {
                         for(int i=0;i<_col.Length;i++)
@@ -77,12 +88,18 @@ public class PlayerStats : MonoBehaviourPunCallbacks
 
                             if(foundtarget)
                             {
+                                Debug.Log("Target not found");
                                 break;
                             }
+                            Debug.Log("Target found");
+
                             for (int j = 0; j < AllEnemyPlayer.Count; j++)
                             {
-                                if (_col[i].gameObject == AllEnemyPlayer[j])
+                                Debug.Log("Checking for Target");
+                                Debug.Log(_col[i].transform.parent.gameObject.transform.parent.gameObject.name);
+                                if (_col[i].transform.parent.gameObject.transform.parent.gameObject == AllEnemyPlayer[j])
                                 {
+                                    Debug.Log("Target Locked and Fire");
                                     LockedNearestTarget = AllEnemyPlayer[j];
                                     FireRockets();
                                     foundtarget = true;
@@ -106,10 +123,11 @@ public class PlayerStats : MonoBehaviourPunCallbacks
 
     private void FireRockets()
     {
-        GameObject temp= PhotonNetwork.Instantiate("RocketPrefab", transform.position, Quaternion.identity);
+        GameObject temp= PhotonNetwork.Instantiate(_powerstats._rockets.name, transform.position + new Vector3(0,10,0), Quaternion.identity);
         temp.GetComponent<Rigidbody>().AddForce(transform.up * 10, ForceMode.Impulse);
         temp.GetComponent<Rocket>().Target = LockedNearestTarget.transform;
         temp.GetComponent<Rocket>().Damage = _powerstats.DamagePerRocket;
+        Debug.Log("Rocket gone");
     }
 
 
@@ -120,8 +138,30 @@ public class PlayerStats : MonoBehaviourPunCallbacks
                 Health -= Damage;
         }else
         {
-            //Death();
+            GameSetupController gameSetupController = GameObject.FindObjectOfType<GameSetupController>();
+            transform.GetComponent<WheelVehicle>().enabled = false;
+            transform.GetComponent<EngineSoundManager>().enabled = false;
+            transform.GetComponent<Rigidbody>().useGravity = false;
+            transform.GetChild(0).gameObject.SetActive(false);
+            gameSetupController.RandomPointinArea(gameSetupController.SpawnArea_CenterPoint.position, Vector3.up, gameSetupController.SpawnArea_Radius);
+            Health = 0;
+            StartCoroutine(ReSpawn(ReSpawn_Time));
         }
+    }
+
+    IEnumerator ReSpawn(int sec)
+    {
+        for (int i = 0; i < sec; i++)
+        {
+            yield return new WaitForSeconds(1);
+        }
+        transform.GetComponent<WheelVehicle>().enabled = true;
+        transform.GetComponent<EngineSoundManager>().enabled = true;
+        transform.GetComponent<Rigidbody>().useGravity = true;
+        transform.GetChild(0).gameObject.SetActive(true);
+        Health = 100;
+
+
     }
 }
 [Serializable]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Gun : MonoBehaviour
+public class Gun : MonoBehaviourPun
 {
     public GameObject GunPointer;
     public GameObject GunBackside;
@@ -20,11 +20,14 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (photonView.IsMine)
         {
-            var Bul = PhotonNetwork.Instantiate("Bullet", GunPointer.transform.position, Quaternion.identity);
-            Bul.GetComponent<BulletScript>().Setup(directioncal());
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                var Bul = PhotonNetwork.Instantiate("Bullet", GunPointer.transform.position, Quaternion.identity);
+                Bul.GetComponent<BulletScript>().Setup(directioncal());
 
+            }
         }
     }
 

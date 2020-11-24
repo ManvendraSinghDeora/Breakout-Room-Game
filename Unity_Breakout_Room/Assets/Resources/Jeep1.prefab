@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 214151594}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Gunpointend
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 967096832}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Gunpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 3392082248324515600}
   - component: {fileID: 3416706748680867406}
   - component: {fileID: 3408305133023784396}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wheel_dirt_42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 3392333714791209494}
   - component: {fileID: 3415155774299036040}
   - component: {fileID: 3407337242351281288}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wheel_dirt_42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 3416730601463255752}
   - component: {fileID: 3409070537854569074}
   - component: {fileID: 3456664704335039558}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: detail_rollbar_35
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 3248653685124272342}
   - component: {fileID: 3352106866095240504}
   - component: {fileID: 3353858067706345676}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FLWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 3392035325395467946}
   - component: {fileID: 3304890283531851876}
   - component: {fileID: 3305079892957682346}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoostParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5247,7 +5247,7 @@ GameObject:
   - component: {fileID: 3390539665498675622}
   - component: {fileID: 3416240017260499658}
   - component: {fileID: 3407112711376756866}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wheel_dirt_42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5329,7 +5329,7 @@ GameObject:
   - component: {fileID: 3392119664321400772}
   - component: {fileID: 3305604115091727422}
   - component: {fileID: 3303861491197005680}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ExhaustSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10147,7 +10147,7 @@ GameObject:
   - component: {fileID: 3415251277934798632}
   - component: {fileID: 3408690103233123510}
   - component: {fileID: 3456761708256872736}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: detail_exhaustVertical_38
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10241,7 +10241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3391773882910217828}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CenterOfMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10274,7 +10274,7 @@ GameObject:
   - component: {fileID: 3415153749357294298}
   - component: {fileID: 3409147072194049170}
   - component: {fileID: 3457581166878229966}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: detail_exhaustVertical_39
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10371,7 +10371,7 @@ GameObject:
   - component: {fileID: 3417076203272100938}
   - component: {fileID: 3407395440204220652}
   - component: {fileID: 3456680241526692260}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: trunk_bed_30
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10467,7 +10467,7 @@ GameObject:
   - component: {fileID: 3392109836356719692}
   - component: {fileID: 3304617057347540758}
   - component: {fileID: 3303843478582653166}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ExhaustSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15284,7 +15284,7 @@ GameObject:
   - component: {fileID: 3391942875885644834}
   - component: {fileID: 3305461191723901474}
   - component: {fileID: 3303652292333399552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoostParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20102,7 +20102,7 @@ GameObject:
   - component: {fileID: 3416663934129678906}
   - component: {fileID: 3407390138608831386}
   - component: {fileID: 3456531711862282218}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: detail_fenderSquare_31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20204,7 +20204,7 @@ GameObject:
   - component: {fileID: 6165423663297196030}
   - component: {fileID: 1309433179}
   - component: {fileID: -1457839301015064774}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Jeep1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -20608,7 +20608,13 @@ MonoBehaviour:
   isProtected: 0
   hasrockets: 0
   HasMines: 0
+  LockedNearestTarget: {fileID: 0}
+  temp: {fileID: 0}
   AllEnemyPlayer: []
+  _col: []
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &6165423663297196030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20627,7 +20633,8 @@ MonoBehaviour:
   observableSearch: 2
   Synchronization: 3
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -1457839301015064774}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -20670,7 +20677,7 @@ GameObject:
   - component: {fileID: 3416793888296176588}
   - component: {fileID: 3408893571608280696}
   - component: {fileID: 3457638438706304184}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: detail_fenderSquare_34
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20766,7 +20773,7 @@ GameObject:
   - component: {fileID: 3416923830604412608}
   - component: {fileID: 3407306109467908162}
   - component: {fileID: 3458466742133903476}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: hood_default_29
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20864,7 +20871,7 @@ GameObject:
   - component: {fileID: 3417068763605470000}
   - component: {fileID: 3408850921392432200}
   - component: {fileID: 3458434407565916820}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: detail_engine_36
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20962,7 +20969,7 @@ GameObject:
   - component: {fileID: 3416134383720489930}
   - component: {fileID: 3407485687810852756}
   - component: {fileID: 3456743613853459566}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: detail_fenderSquare_32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21058,7 +21065,7 @@ GameObject:
   - component: {fileID: 3248317462746169444}
   - component: {fileID: 3353973230470607092}
   - component: {fileID: 3354039603082168206}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BLWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21154,7 +21161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3390306448405419034}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21198,7 +21205,7 @@ GameObject:
   - component: {fileID: 3416002703449764686}
   - component: {fileID: 3408909623945705774}
   - component: {fileID: 3457045889453834552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: windshield_truck_28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21297,7 +21304,7 @@ GameObject:
   - component: {fileID: 3416771416609810590}
   - component: {fileID: 3407456528540061106}
   - component: {fileID: 3456854739028335492}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: detail_fenderSquare_33
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21393,7 +21400,7 @@ GameObject:
   - component: {fileID: 3248575754386354602}
   - component: {fileID: 3353852576607835342}
   - component: {fileID: 3353919222938983994}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BRWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21492,7 +21499,7 @@ GameObject:
   - component: {fileID: 3248450700844240022}
   - component: {fileID: 3353874848838892318}
   - component: {fileID: 3353630072554547744}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FRWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21590,7 +21597,7 @@ GameObject:
   - component: {fileID: 3390475746687963160}
   - component: {fileID: 3415139184329382420}
   - component: {fileID: 3409207080061722316}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wheel_dirt_42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
