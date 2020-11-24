@@ -20,6 +20,8 @@ public class PlayerStats : MonoBehaviourPunCallbacks
     GameObject LockedNearestTarget;
     GameObject [] Players;
     public List<GameObject> AllEnemyPlayer;
+
+    bool foundtarget;
     void Awake()
     {
         if (Instance == null)
@@ -65,18 +67,25 @@ public class PlayerStats : MonoBehaviourPunCallbacks
             {
                 if (Input.GetKeyDown(KeyCode.R))
                 {
+                    foundtarget = false;
                     FindallPlayers();
                     Collider[] _col = Physics.OverlapSphere(transform.position, _powerstats.FireRadiusRockets);
                     if (_col.Length > 0)
                     {
                         for(int i=0;i<_col.Length;i++)
                         {
+
+                            if(foundtarget)
+                            {
+                                break;
+                            }
                             for (int j = 0; j < AllEnemyPlayer.Count; j++)
                             {
                                 if (_col[i].gameObject == AllEnemyPlayer[j])
                                 {
                                     LockedNearestTarget = AllEnemyPlayer[j];
                                     FireRockets();
+                                    foundtarget = true;
                                     noofrockets -= 1;
                                     break;
                                 }
