@@ -33,7 +33,6 @@ public class localMang : MonoBehaviourPun
     public IEnumerator ReSpawn(int sec)
     {
         GameSetupController gameSetupController = GameObject.FindObjectOfType<GameSetupController>();
-        GameObject[] _child = transform.GetComponentsInParent<GameObject>();
         Player.SetActive(false);
         Vector3 newpos = gameSetupController.RandomPointinArea(gameSetupController.SpawnArea_CenterPoint.position, Vector3.up, gameSetupController.SpawnArea_Radius);
         Player.transform.position = newpos;

@@ -14,7 +14,7 @@ public class Rocket : MonoBehaviourPun
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+
     }
 
     // Update is called once per frame
@@ -38,17 +38,20 @@ public class Rocket : MonoBehaviourPun
         {
             if (!other.gameObject.GetPhotonView().IsMine)
             {
-                photonView.RPC("SendDamagetoAll", RpcTarget.All, other.transform.GetComponent<PhotonView>().ViewID);
-            }
 
+                SendDamage(other.gameObject);
+            }
         }
     }
-    [PunRPC]
-    void SendDamagetoAll(int other)
+
+    void SendDamage(GameObject _temp)
     {
-        GameObject _temp = PhotonView.Find(other).gameObject;
-        _temp.transform.GetComponent<PlayerStats>().TakeDamage(Damage);
-        //Instantiate(explosion, transform.position,Quaternion.identity);
+
+        if (_temp.activeSelf)
+        {
+            _temp.transform.GetComponent<PlayerStats>().TakeDamage(Damage);
+            //Instantiate(explosion, transform.position,Quaternion.identity);
+        }
         Destroy(this.gameObject);
     }
 

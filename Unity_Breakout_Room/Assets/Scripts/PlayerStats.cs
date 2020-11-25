@@ -164,12 +164,15 @@ public class PlayerStats : MonoBehaviourPun
         else
         {
             Health = 0;
-            StartCoroutine(_Local.ReSpawn(ReSpawn_Time));
+            photonView.RPC("Respawn", RpcTarget.All);
         }
     }
 
-
-
+    [PunRPC]
+    void Respawn()
+    {
+        StartCoroutine(_Local.ReSpawn(ReSpawn_Time));
+    }
 }
 [Serializable]
 public class PowerUps
