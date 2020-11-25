@@ -27,7 +27,7 @@ public class PowerUpSpawner : MonoBehaviourPun
     [PunRPC]
     public void PowerupPicked(int i)
     {
-       PhotonNetwork.Destroy(current);
+        Destroy(current);
         GameObject temp = PhotonView.Find(i).gameObject;
         PowerUpID(temp);
     }

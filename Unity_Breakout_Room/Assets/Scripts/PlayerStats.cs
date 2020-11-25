@@ -155,7 +155,7 @@ public class PlayerStats : MonoBehaviourPun
 
     private void FireRockets()
     {
-        GameObject temp = PhotonNetwork.Instantiate(_powerstats._rockets.name, transform.position + new Vector3(0, 10, 0), Quaternion.identity);
+        GameObject temp = PhotonNetwork.Instantiate("RocketPrefab", transform.position + new Vector3(0, 10, 0), Quaternion.identity);
         temp.GetComponent<Rigidbody>().AddForce(transform.up * 10, ForceMode.Impulse);
         temp.GetComponent<Rocket>().Target = LockedNearestTarget.transform;
         temp.GetComponent<Rocket>().Damage = _powerstats.DamagePerRocket;
