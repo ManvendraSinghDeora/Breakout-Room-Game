@@ -25,7 +25,6 @@ public class UIManager : MonoBehaviourPun
 
     #region Game Over Region
     public Text OverConter;
-    public GameObject GameOverPanel;
     #endregion
 
     float totalkills;
@@ -87,8 +86,8 @@ public class UIManager : MonoBehaviourPun
                 Debug.Log("Time has run out!");
                 timeRemaining = 0;
                 timerIsRunning = false;
-                GameOverPanel.SetActive(true);
-                StartCoroutine(RoomLeave(3));
+
+                
                 //EndGame();
             }
         }
@@ -96,13 +95,11 @@ public class UIManager : MonoBehaviourPun
     }
     IEnumerator RoomLeave(int time)
     {
-        for (int i = time; i < 0; i--)
+        for (int i = 0; i < time; i++)
         {
-            //yield return new WaitForSeconds(1f);
-            OverConter.text = i.ToString();
-            Debug.Log("reseting : " + i.ToString());
+            OverConter.text = time.ToString();
+            yield return new WaitForSeconds(1);
         }
-        yield return null;
     }
     void DisplayTime(float timeToDisplay)
     {
