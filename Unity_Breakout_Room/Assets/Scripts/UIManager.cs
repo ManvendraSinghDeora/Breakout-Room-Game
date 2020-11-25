@@ -5,6 +5,7 @@ using Photon.Pun;
 using UnityEngine.UI;
 using VehicleBehaviour;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviourPun
 {
     public static UIManager Instance;
@@ -96,13 +97,18 @@ public class UIManager : MonoBehaviourPun
     }
     IEnumerator RoomLeave(int time)
     {
-        for (int i = time; i < 0; i--)
+        for (int i = time; i > 0; i--)
         {
-            //yield return new WaitForSeconds(1f);
             OverConter.text = i.ToString();
             Debug.Log("reseting : " + i.ToString());
+            yield return new WaitForSeconds(1f);
         }
-        yield return null;
+
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+            SceneManager.LoadScene(0);
+        }
     }
     void DisplayTime(float timeToDisplay)
     {
