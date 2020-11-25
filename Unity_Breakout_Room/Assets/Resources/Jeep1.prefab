@@ -20616,6 +20616,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   ReSpawn_Time: 3
+  Last_Health: 0
+  _Local: {fileID: 0}
 --- !u!114 &6165423663297196030
 MonoBehaviour:
   m_ObjectHideFlags: 0

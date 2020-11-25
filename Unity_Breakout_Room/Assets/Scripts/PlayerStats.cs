@@ -21,13 +21,14 @@ public class PlayerStats : MonoBehaviourPun
     int noofrockets;
     public GameObject LockedNearestTarget;
     public GameObject temp;
-    GameObject [] Players;
+    GameObject[] Players;
     public List<GameObject> AllEnemyPlayer;
     public Collider[] _col;
     bool foundtarget;
     public LayerMask PlayerLayer;
     public int ReSpawn_Time = 3;
     public float Last_Health;
+    public localMang _Local;
     void Awake()
     {
         if (Instance == null)
@@ -35,18 +36,19 @@ public class PlayerStats : MonoBehaviourPun
             Instance = this;
 
         }
-         Health = MaxHealth;
+        Health = MaxHealth;
         Last_Health = Health;
         _powerstats.InizitlizeValues();
-       
+
         noofrockets = _powerstats.NoOfRockets;
         FindallPlayers();
     }
     void Start()
     {
-
+        if (_Local == null)
+            _Local = GameObject.FindObjectOfType<localMang>();
     }
-    
+
     void FindallPlayers()
     {
         Players = GameObject.FindGameObjectsWithTag("Player");
@@ -58,11 +60,15 @@ public class PlayerStats : MonoBehaviourPun
                 AllEnemyPlayer.Add(Players[i]);
             }
         }
-        
+
     }
     // Update is called once per frame
     void Update()
     {
+        if (_Local == null)
+        {
+            _Local = GameObject.FindObjectOfType<localMang>();
+        }
         Rockets();
 
         if (Last_Health != Health)
@@ -96,13 +102,13 @@ public class PlayerStats : MonoBehaviourPun
                 {
                     foundtarget = false;
                     FindallPlayers();
-                    _col = Physics.OverlapSphere(transform.position, _powerstats.FireRadiusRockets,PlayerLayer);
+                    _col = Physics.OverlapSphere(transform.position, _powerstats.FireRadiusRockets, PlayerLayer);
                     if (_col.Length > 0)
                     {
-                        for(int i=0;i<_col.Length;i++)
+                        for (int i = 0; i < _col.Length; i++)
                         {
 
-                            if(foundtarget)
+                            if (foundtarget)
                             {
                                 Debug.Log("Target not found");
                                 break;
@@ -126,12 +132,14 @@ public class PlayerStats : MonoBehaviourPun
                         }
                     }
                 }
-            }else
+            }
+            else
             {
                 noofrockets = _powerstats.NoOfRockets;
                 hasrockets = false;
             }
-        }else
+        }
+        else
         {
             return;
         }
@@ -139,7 +147,7 @@ public class PlayerStats : MonoBehaviourPun
 
     private void FireRockets()
     {
-        GameObject temp= PhotonNetwork.Instantiate(_powerstats._rockets.name, transform.position + new Vector3(0,10,0), Quaternion.identity);
+        GameObject temp = PhotonNetwork.Instantiate(_powerstats._rockets.name, transform.position + new Vector3(0, 10, 0), Quaternion.identity);
         temp.GetComponent<Rigidbody>().AddForce(transform.up * 10, ForceMode.Impulse);
         temp.GetComponent<Rocket>().Target = LockedNearestTarget.transform;
         temp.GetComponent<Rocket>().Damage = _powerstats.DamagePerRocket;
@@ -151,54 +159,20 @@ public class PlayerStats : MonoBehaviourPun
         float damgetake = Health - Damage;
         if (damgetake > 0)
         {
-                Health = damgetake;
+            Health = damgetake;
         }
         else
         {
-           
-            StartCoroutine(ReSpawn(ReSpawn_Time));
+            Health = 0;
+            StartCoroutine(_Local.ReSpawn(ReSpawn_Time));
         }
     }
 
-    IEnumerator ReSpawn(int sec)
-    {
-        Health = 0;
-        GameSetupController gameSetupController = GameObject.FindObjectOfType<GameSetupController>();
-        transform.GetComponent<WheelVehicle>().enabled = false;
-        transform.GetComponent<EngineSoundManager>().enabled = false;
-        transform.GetComponent<Rigidbody>().useGravity = false;
-        GameObject[] _child = transform.GetComponentsInParent<GameObject>();
-        foreach(GameObject obj in _child)
-        {
 
-            obj.SetActive(false);
-        }
-        gameSetupController.RandomPointinArea(gameSetupController.SpawnArea_CenterPoint.position, Vector3.up, gameSetupController.SpawnArea_Radius);
-        UIManager.Instance._respawn.SetActive(true);
-        for (int i = sec; i > 0; i--)
-        {
-            UIManager.Instance._respawn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Respawn in " + i;
-            yield return new WaitForSeconds(1);
-        }
-
-
-        UIManager.Instance._respawn.SetActive(false);
-
-        foreach (GameObject obj in _child)
-        {
-            obj.SetActive(true);
-        }
-        transform.GetComponent<WheelVehicle>().enabled = true;
-        transform.GetComponent<EngineSoundManager>().enabled = true;
-        transform.GetComponent<Rigidbody>().useGravity = true;
-        Health = 100;
-
-
-    }
 
 }
 [Serializable]
-public class PowerUps 
+public class PowerUps
 {
     [Header("Repair Power Up Stat : ")]
     public int RepairHealth;
@@ -236,7 +210,8 @@ public class PowerUps
         if (PlayerStats.Instance.Health < 100)
         {
             PlayerStats.Instance.Health += RepairHealth;
-        }else
+        }
+        else
         {
             PlayerStats.Instance.Health = 100;
         }
