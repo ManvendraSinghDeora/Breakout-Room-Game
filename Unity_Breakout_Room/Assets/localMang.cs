@@ -7,6 +7,7 @@ using Photon.Pun;
 public class localMang : MonoBehaviourPun
 {
     GameObject Player;
+    bool running;
     void Start()
     {
         CheckforownPlayer();
@@ -30,8 +31,13 @@ public class localMang : MonoBehaviourPun
     {
         CheckforownPlayer();
     }
-    public IEnumerator ReSpawn(int sec)
+    public void Respawn()
     {
+        StartCoroutine(ReSpawnCO(3));
+    }
+    public IEnumerator ReSpawnCO(int sec)
+    {
+        running = true;
         GameSetupController gameSetupController = GameObject.FindObjectOfType<GameSetupController>();
         Player.SetActive(false);
         Vector3 newpos = gameSetupController.RandomPointinArea(gameSetupController.SpawnArea_CenterPoint.position, Vector3.up, gameSetupController.SpawnArea_Radius);
@@ -45,7 +51,7 @@ public class localMang : MonoBehaviourPun
         Player.SetActive(true);
         Player.GetComponent<PlayerStats>().Health = 100;
         UIManager.Instance._respawn.SetActive(false);
-     
 
+        running = false;
     }
 }

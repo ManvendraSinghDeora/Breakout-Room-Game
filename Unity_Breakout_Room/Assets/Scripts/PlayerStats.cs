@@ -78,9 +78,9 @@ public class PlayerStats : MonoBehaviourPun
             photonView.RPC("RCP_Set_Health", RpcTarget.All, Health);
         }
 
-        if(Health<=0)
+        if(Health <= 0)
         {
-            StartCoroutine(_Local.ReSpawn(ReSpawn_Time));
+            _Local.Respawn();
         }
     }
 
@@ -171,11 +171,6 @@ public class PlayerStats : MonoBehaviourPun
             Health = 0;
            
         }
-    }
-
-    public void Respawn()
-    {
-        StartCoroutine(_Local.ReSpawn(ReSpawn_Time));
     }
 }
 [Serializable]
