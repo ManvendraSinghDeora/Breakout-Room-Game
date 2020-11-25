@@ -17,7 +17,10 @@ public class PowerUpSpawner : MonoBehaviourPun
     
     private void OnTriggerEnter(Collider other)
     {
-        _CheckCollision(other.gameObject);
+        if (other.gameObject.tag == "Player")
+        {
+            _CheckCollision(other.gameObject);
+        }
     }
 
     public void _CheckCollision(GameObject other)
