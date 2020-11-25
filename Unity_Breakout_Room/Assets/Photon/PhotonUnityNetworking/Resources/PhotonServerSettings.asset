@@ -41,6 +41,7 @@ MonoBehaviour:
   - AddPoints
   - RPC_Shoot
   - SendDamagetoAll
+  - RCP_Set_Health
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

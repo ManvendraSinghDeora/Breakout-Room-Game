@@ -27,6 +27,7 @@ public class PlayerStats : MonoBehaviourPun
     bool foundtarget;
     public LayerMask PlayerLayer;
     public int ReSpawn_Time = 3;
+    public float Last_Health;
     void Awake()
     {
         if (Instance == null)
@@ -35,6 +36,7 @@ public class PlayerStats : MonoBehaviourPun
 
         }
          Health = MaxHealth;
+        Last_Health = Health;
         _powerstats.InizitlizeValues();
        
         noofrockets = _powerstats.NoOfRockets;
@@ -62,7 +64,19 @@ public class PlayerStats : MonoBehaviourPun
     void Update()
     {
         Rockets();
-       
+
+        if (Last_Health != Health)
+        {
+            //object[] Datavalues = new object[Health]; 
+            Debug.Log("Gone in Health Change");
+            photonView.RPC("RCP_Set_Health", RpcTarget.All, Health);
+        }
+    }
+
+    [PunRPC]
+    public void RCP_Set_Health(float value)
+    {
+        Last_Health = Health = value;
     }
 
     private void OnDrawGizmos()
