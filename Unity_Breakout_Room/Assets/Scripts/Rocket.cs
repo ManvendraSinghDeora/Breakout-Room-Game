@@ -8,13 +8,13 @@ public class Rocket : MonoBehaviourPun
     public Transform Target;
     public float Speed;
     public float rotateSpeed = 200f;
-    [HideInInspector]
-    public int Damage;
+    public float Damage;
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -33,17 +33,24 @@ public class Rocket : MonoBehaviourPun
     void OnCollisionEnter(Collision other)
     {
 
-        Debug.Log("Rocket Hit : "+other.gameObject.name);
-            if (other.gameObject.tag == "Player")
+        Debug.Log("Rocket Hit : " + other.gameObject.name);
+        if (other.gameObject.tag == "Player")
+        {
+            if (!other.gameObject.GetPhotonView().IsMine)
             {
-            if(!other.gameObject.GetPhotonView().IsMine)
-                
-                other.transform.GetComponent<PlayerStats>().TakeDamage ( Damage);
-                //Instantiate(explosion, transform.position,Quaternion.identity);
-                Destroy(this.gameObject);
+                photonView.RPC("SendDamagetoAll", RpcTarget.All, other.transform.GetComponent<PhotonView>().ViewID);
             }
+
         }
-        
-     
     }
+    [PunRPC]
+    void SendDamagetoAll(int other)
+    {
+        GameObject _temp = PhotonView.Find(other).gameObject;
+        _temp.transform.GetComponent<PlayerStats>().TakeDamage(Damage);
+        //Instantiate(explosion, transform.position,Quaternion.identity);
+        Destroy(this.gameObject);
+    }
+
+}
 

@@ -2314,7 +2314,7 @@ ScriptsOnlyBuild:
     className: ConnectToRegionUIForm
   - hash:
       serializedVersion: 2
-      Hash: d9484e59f996c0907952528335f27b8b
+      Hash: 8d89708b31e27bd85be29194ed522e9c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Rocket
@@ -2400,4 +2400,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/play.unity
   - Assets/Scenes/RishabhScene.unity
-  playerPath: E:/2020_Backup/Backup/Game Build/Unity_Breakout_Room.exe
+  playerPath: C:/Users/Rishabh/Desktop/Gametest/Unity_Breakout_Room.exe
