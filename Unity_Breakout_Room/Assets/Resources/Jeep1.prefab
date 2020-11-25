@@ -20596,16 +20596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
-  _powerstats:
-    RepairHealth: 25
-    ShieldDuration: 10
-    _rockets: {fileID: 6448057445596982289, guid: 5cdd6aaa88af35e40b75d647ff66b4c4, type: 3}
-    FireRadiusRockets: 10
-    NoOfRockets: 4
-    DamagePerRocket: 20
-    _mines: {fileID: 0}
-    NoOfMines: 4
-    DamagePerMines: 40
+  _powerstats: {fileID: 0}
   isProtected: 0
   hasrockets: 0
   HasMines: 0

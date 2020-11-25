@@ -11,7 +11,7 @@ public class PlayerStats : MonoBehaviourPun
     public static PlayerStats Instance;
     public float Health;
 
-    [SerializeField] PowerUps _powerstats;
+    public PowerUps _powerstats;
 
     public bool isProtected;
     public bool hasrockets;
@@ -177,10 +177,10 @@ public class PlayerStats : MonoBehaviourPun
     }
 }
 [Serializable]
-public class PowerUps
+public class PowerUps 
 {
     [Header("Repair Power Up Stat : ")]
-    public int RepairHealth;
+    public float RepairHealth;
     [Header("Shield Power Up Stat : ")]
     [Tooltip("In Secs")]
     public int ShieldDuration;
@@ -197,33 +197,38 @@ public class PowerUps
     ConstantValues _constant = new ConstantValues();
 
     public void Rockets()
-    {
-        PlayerStats.Instance.hasrockets = true;
+    {  
+            PlayerStats.Instance.hasrockets = true;
     }
     public void Mines()
     {
-        PlayerStats.Instance.HasMines = true;
+       
+            PlayerStats.Instance.HasMines = true;
+
     }
     public IEnumerator Shield()
     {
-        PlayerStats.Instance.isProtected = true;
-        yield return new WaitForSeconds(ShieldDuration);
-        PlayerStats.Instance.isProtected = false;
+        
+            PlayerStats.Instance.isProtected = true;
+            yield return new WaitForSeconds(ShieldDuration);
+            PlayerStats.Instance.isProtected = false;
+
     }
     public void Repair()
     {
-        if (PlayerStats.Instance.Health < 100)
-        {
-            PlayerStats.Instance.Health += RepairHealth;
-        }
-        else
-        {
-            PlayerStats.Instance.Health = 100;
-        }
+            if (PlayerStats.Instance.Health < 100)
+            {
+                PlayerStats.Instance.Health += RepairHealth;
+            }
+            else
+            {
+                PlayerStats.Instance.Health = 100;
+            }
     }
 
     public void InizitlizeValues()
     {
+        RepairHealth = _constant.RepairHealth;
         FireRadiusRockets = _constant.RocketFireRange;
         NoOfRockets = _constant.NumberofRockets;
         DamagePerRocket = _constant.DamagePerRocket;
