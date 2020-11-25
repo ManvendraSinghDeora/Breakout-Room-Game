@@ -19,13 +19,14 @@ public class PowerUpSpawner : MonoBehaviourPun
     {
 
     }
-    void OnTriggerEnter(Collider col)
+
+
+
+    public void _CheckCollision(GameObject other)
     {
-        if (col.gameObject.tag == "Player")
+        if (other.gameObject.GetPhotonView().IsMine)
         {
-
-            photonView.RPC("PowerupPicked", RpcTarget.All, col.gameObject.GetPhotonView().ViewID);
-
+            photonView.RPC("PowerupPicked", RpcTarget.All, other.gameObject.GetPhotonView().ViewID);
         }
     }
     [PunRPC]
@@ -63,6 +64,6 @@ public class PowerUpSpawner : MonoBehaviourPun
             current = PhotonNetwork.Instantiate("HealthPower", transform.position + new Vector3(0, 2, 0), Quaternion.identity);
             CurrentPowerup = 2;
         }
-       
+
     }
 }

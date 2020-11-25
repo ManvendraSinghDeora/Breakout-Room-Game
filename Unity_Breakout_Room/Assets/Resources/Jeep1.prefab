@@ -20204,6 +20204,7 @@ GameObject:
   - component: {fileID: 6165423663297196030}
   - component: {fileID: 1309433179}
   - component: {fileID: -1457839301015064774}
+  - component: {fileID: 551933762539586726}
   m_Layer: 9
   m_Name: Jeep1
   m_TagString: Player
@@ -20596,7 +20597,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
-  _powerstats: {fileID: 0}
+  _powerstats:
+    RepairHealth: 0
+    ShieldDuration: 0
+    _rockets: {fileID: 0}
+    FireRadiusRockets: 0
+    NoOfRockets: 0
+    DamagePerRocket: 0
+    _mines: {fileID: 0}
+    NoOfMines: 0
+    DamagePerMines: 0
   isProtected: 0
   hasrockets: 0
   HasMines: 0
@@ -20660,6 +20670,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1233414cc6f06034b8b56fc851202283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &551933762539586726
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3393898417743898522}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 2.885858}
+  m_Center: {x: 0, y: 0, z: -0.02869139}
 --- !u!1 &3393908319687860766
 GameObject:
   m_ObjectHideFlags: 0

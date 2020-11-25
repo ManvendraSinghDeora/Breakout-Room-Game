@@ -175,6 +175,14 @@ public class PlayerStats : MonoBehaviourPun
            
         }
     }
+    void OnTriggerEnter(Collider col)
+    {
+        Debug.Log("Collided to Spawner");
+        if(col.gameObject.tag=="Spawner")
+        {
+            col.gameObject.GetComponent<PowerUpSpawner>()._CheckCollision(this.gameObject);
+        }
+    }
 }
 [Serializable]
 public class PowerUps 
