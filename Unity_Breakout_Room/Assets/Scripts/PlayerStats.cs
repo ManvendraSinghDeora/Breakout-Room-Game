@@ -164,7 +164,8 @@ public class PlayerStats : MonoBehaviourPun
         else
         {
             Health = 0;
-            photonView.RPC("Respawn", RpcTarget.All);
+            //photonView.RPC("Respawn", RpcTarget.Others);
+            StartCoroutine(_Local.ReSpawn(ReSpawn_Time));
         }
     }
 

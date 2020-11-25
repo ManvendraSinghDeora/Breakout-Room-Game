@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 201897764117017469}
   - component: {fileID: 8427424613462947736}
   - component: {fileID: 7302646189087216110}
-  - component: {fileID: 3696820395240899794}
+  - component: {fileID: 3508562004208719430}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -148,11 +148,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 3696820395240899794}
+  - {fileID: 3508562004208719430}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &3696820395240899794
+--- !u!114 &3508562004208719430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

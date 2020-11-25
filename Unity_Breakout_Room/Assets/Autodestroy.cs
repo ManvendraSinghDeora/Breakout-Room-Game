@@ -18,6 +18,6 @@ public class Autodestroy : MonoBehaviourPun
     IEnumerator _autoDes()
     {
         yield return new WaitForSeconds(4);
-        PhotonNetwork.Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 }

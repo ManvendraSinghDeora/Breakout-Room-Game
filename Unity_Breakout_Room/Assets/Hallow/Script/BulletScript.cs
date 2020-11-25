@@ -40,17 +40,17 @@ public class BulletScript : MonoBehaviourPun
             {
                 _collision.transform.GetComponent<PlayerStats>().Health -= Damage;
                 PhotonNetwork.Instantiate("BulletBlastParticle", transform.position, Quaternion.identity);
-                PhotonNetwork.Destroy(this.gameObject);
+                Destroy(this.gameObject);
             }
         }
         if (_collision.gameObject.tag == "Environment")
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
     IEnumerator Autodestroy()
     {
         yield return new WaitForSeconds(4);
-        PhotonNetwork.Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 }
