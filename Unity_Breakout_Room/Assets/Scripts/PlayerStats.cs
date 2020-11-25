@@ -77,6 +77,11 @@ public class PlayerStats : MonoBehaviourPun
             Debug.Log("Gone in Health Change");
             photonView.RPC("RCP_Set_Health", RpcTarget.All, Health);
         }
+
+        if(Health<=0)
+        {
+            StartCoroutine(_Local.ReSpawn(ReSpawn_Time));
+        }
     }
 
     [PunRPC]
@@ -164,13 +169,11 @@ public class PlayerStats : MonoBehaviourPun
         else
         {
             Health = 0;
-            //photonView.RPC("Respawn", RpcTarget.Others);
-            StartCoroutine(_Local.ReSpawn(ReSpawn_Time));
+           
         }
     }
 
-    [PunRPC]
-    void Respawn()
+    public void Respawn()
     {
         StartCoroutine(_Local.ReSpawn(ReSpawn_Time));
     }
