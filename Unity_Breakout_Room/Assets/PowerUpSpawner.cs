@@ -14,8 +14,8 @@ public class PowerUpSpawner : MonoBehaviourPun
         StartCoroutine(Spawner());
     }
 
-
-    private void OnTriggerStay(Collider other)
+    
+    private void OnTriggerEnter(Collider other)
     {
         _CheckCollision(other.gameObject);
     }
@@ -41,7 +41,7 @@ public class PowerUpSpawner : MonoBehaviourPun
         {
             other.gameObject.GetComponent<PlayerStats>()._powerstats.Repair();
         }
-        StartCoroutine(Spawner());
+            StartCoroutine(Spawner());
     }
 
     IEnumerator Spawner()
