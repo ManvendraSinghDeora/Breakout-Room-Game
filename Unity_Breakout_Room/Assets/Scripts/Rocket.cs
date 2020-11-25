@@ -38,15 +38,14 @@ public class Rocket : MonoBehaviourPun
         {
             if (!other.gameObject.GetPhotonView().IsMine)
             {
-
-                SendDamage(other.gameObject);
+                photonView.RPC( "SendDamage",RpcTarget.All,other.gameObject.GetPhotonView().ViewID);
             }
         }
     }
-
-    void SendDamage(GameObject _temp)
+   [PunRPC]
+    void SendDamage(int i)
     {
-
+        GameObject _temp = PhotonView.Find(i).gameObject;
         if (_temp.activeSelf)
         {
             _temp.transform.GetComponent<PlayerStats>().TakeDamage(Damage);
@@ -54,8 +53,8 @@ public class Rocket : MonoBehaviourPun
         }else
         {
             Destroy(this.gameObject);
-        }    
-       Destroy(this.gameObject);
+        }
+        Destroy(this.gameObject);
     }
 
 }

@@ -78,9 +78,12 @@ public class PlayerStats : MonoBehaviourPun
             photonView.RPC("RCP_Set_Health", RpcTarget.All, Health);
         }
 
-        if(Health <= 0)
+        if (Health <= 0)
         {
-            _Local.Respawn();
+            if (photonView.IsMine)
+            {
+                _Local.Respawn();
+            }
         }
     }
 
