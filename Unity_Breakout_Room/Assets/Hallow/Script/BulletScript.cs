@@ -36,36 +36,21 @@ public class BulletScript : MonoBehaviourPun
     {
         if (_collision.gameObject.tag == "Player")
         {
-            if (!_collision.gameObject.GetPhotonView().IsMine)
+            if (!_collision.gameObject.GetPhotonView().IsMine && _collision.gameObject.GetComponent<PlayerStats>())
             {
                 _collision.transform.GetComponent<PlayerStats>().Health -= Damage;
-                Destroy(this.gameObject);
-            }
-        }
-        if (_collision.gameObject.tag == "Environment")
-        {
-            Destroy(this.gameObject);
-        }
-    }
-    private void OnCollisionStay(Collision _collision)
-    {
-        if (_collision.gameObject.tag == "Player")
-        {
-            if (!_collision.gameObject.GetPhotonView().IsMine)
-            {
-                _collision.transform.GetComponent<PlayerStats>().TakeDamage(Damage);
                 PhotonNetwork.Instantiate("BulletBlastParticle", transform.position, Quaternion.identity);
-                Destroy(this.gameObject);
+                PhotonNetwork.Destroy(this.gameObject);
             }
         }
         if (_collision.gameObject.tag == "Environment")
         {
-            Destroy(this.gameObject);
+            PhotonNetwork.Destroy(this.gameObject);
         }
     }
     IEnumerator Autodestroy()
     {
         yield return new WaitForSeconds(4);
-        Destroy(this.gameObject);
+        PhotonNetwork.Destroy(this.gameObject);
     }
 }

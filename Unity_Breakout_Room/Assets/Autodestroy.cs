@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Autodestroy : MonoBehaviour
+using Photon.Pun;
+public class Autodestroy : MonoBehaviourPun
 {
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,6 @@ public class Autodestroy : MonoBehaviour
     IEnumerator _autoDes()
     {
         yield return new WaitForSeconds(4);
-        Destroy(this.gameObject);
+        PhotonNetwork.Destroy(this.gameObject);
     }
 }

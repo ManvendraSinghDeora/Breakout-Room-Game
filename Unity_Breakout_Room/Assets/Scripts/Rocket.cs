@@ -52,7 +52,7 @@ public class Rocket : MonoBehaviourPun
             _temp.transform.GetComponent<PlayerStats>().TakeDamage(Damage);
             //Instantiate(explosion, transform.position,Quaternion.identity);
         }
-        Destroy(this.gameObject);
+        PhotonNetwork.Destroy(this.gameObject);
     }
 
 }
