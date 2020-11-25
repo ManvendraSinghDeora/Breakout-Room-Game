@@ -789,7 +789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1563866291
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3212,6 +3212,10 @@ PrefabInstance:
       propertyPath: OverConter
       value: 
       objectReference: {fileID: 758781271}
+    - target: {fileID: 4464037034976703267, guid: 2804d3978f9bfc5459e3e94393ee88dd, type: 3}
+      propertyPath: GameOverPanel
+      value: 
+      objectReference: {fileID: 1563866290}
     - target: {fileID: 4464037034976703278, guid: 2804d3978f9bfc5459e3e94393ee88dd, type: 3}
       propertyPath: m_Name
       value: GameplayCanvas
