@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4983590084545805574, guid: 55bea612762e67d4085492aa4334f870, type: 3}
+      propertyPath: viewIdField
+      value: 996
+      objectReference: {fileID: 0}
     - target: {fileID: 6987851986636772566, guid: 55bea612762e67d4085492aa4334f870, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.1
@@ -551,6 +555,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4983590084545805574, guid: 55bea612762e67d4085492aa4334f870, type: 3}
+      propertyPath: viewIdField
+      value: 995
+      objectReference: {fileID: 0}
     - target: {fileID: 6987851986636772566, guid: 55bea612762e67d4085492aa4334f870, type: 3}
       propertyPath: m_LocalPosition.x
       value: 58.6
@@ -608,6 +616,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4983590084545805574, guid: 55bea612762e67d4085492aa4334f870, type: 3}
+      propertyPath: viewIdField
+      value: 997
+      objectReference: {fileID: 0}
     - target: {fileID: 6987851986636772566, guid: 55bea612762e67d4085492aa4334f870, type: 3}
       propertyPath: m_LocalPosition.x
       value: 188.3
@@ -1605,6 +1617,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4983590084545805574, guid: 55bea612762e67d4085492aa4334f870, type: 3}
+      propertyPath: viewIdField
+      value: 998
+      objectReference: {fileID: 0}
     - target: {fileID: 6987851986636772566, guid: 55bea612762e67d4085492aa4334f870, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.6
@@ -3790,6 +3806,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4983590084545805574, guid: 55bea612762e67d4085492aa4334f870, type: 3}
+      propertyPath: viewIdField
+      value: 994
+      objectReference: {fileID: 0}
     - target: {fileID: 6987851986636772566, guid: 55bea612762e67d4085492aa4334f870, type: 3}
       propertyPath: m_LocalPosition.x
       value: 73.6
@@ -4188,6 +4208,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4983590084545805574, guid: 55bea612762e67d4085492aa4334f870, type: 3}
+      propertyPath: viewIdField
+      value: 999
+      objectReference: {fileID: 0}
     - target: {fileID: 6987851986636772566, guid: 55bea612762e67d4085492aa4334f870, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.97

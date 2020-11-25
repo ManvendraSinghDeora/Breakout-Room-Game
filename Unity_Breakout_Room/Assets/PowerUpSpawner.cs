@@ -8,31 +8,26 @@ public class PowerUpSpawner : MonoBehaviourPun
     float CurrentPowerup;
     ConstantValues _cont = new ConstantValues();
 
-    GameObject current;
+    public GameObject current;
     void Start()
     {
         StartCoroutine(Spawner());
     }
 
 
-    void Update()
+    private void OnTriggerStay(Collider other)
     {
-
+        _CheckCollision(other.gameObject);
     }
-
-
 
     public void _CheckCollision(GameObject other)
     {
-        if (other.gameObject.GetPhotonView().IsMine)
-        {
             photonView.RPC("PowerupPicked", RpcTarget.All, other.gameObject.GetPhotonView().ViewID);
-        }
     }
     [PunRPC]
-    void PowerupPicked(int i)
+    public void PowerupPicked(int i)
     {
-        Destroy(current);
+       PhotonNetwork.Destroy(current);
         GameObject temp = PhotonView.Find(i).gameObject;
         PowerUpID(temp);
     }
