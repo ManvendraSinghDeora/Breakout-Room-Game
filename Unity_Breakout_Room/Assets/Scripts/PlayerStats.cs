@@ -4,8 +4,9 @@ using UnityEngine;
 using Photon.Pun;
 using System;
 using VehicleBehaviour;
+using TMPro;
 
-public class PlayerStats : MonoBehaviourPun,IPunObservable
+public class PlayerStats : MonoBehaviourPun
 {
     public static PlayerStats Instance;
     public float Health;
@@ -16,7 +17,7 @@ public class PlayerStats : MonoBehaviourPun,IPunObservable
     public bool hasrockets;
     public bool HasMines;
 
-    int MaxHealth = 100;
+    float MaxHealth = 100;
     int noofrockets;
     public GameObject LockedNearestTarget;
     public GameObject temp;
@@ -26,8 +27,6 @@ public class PlayerStats : MonoBehaviourPun,IPunObservable
     bool foundtarget;
     public LayerMask PlayerLayer;
     public int ReSpawn_Time = 3;
-    private bool valueRecive;
-    float lastHealth;
     void Awake()
     {
         if (Instance == null)
@@ -35,7 +34,7 @@ public class PlayerStats : MonoBehaviourPun,IPunObservable
             Instance = this;
 
         }
-        Health = MaxHealth;
+         Health = MaxHealth;
         _powerstats.InizitlizeValues();
        
         noofrockets = _powerstats.NoOfRockets;
@@ -63,10 +62,7 @@ public class PlayerStats : MonoBehaviourPun,IPunObservable
     void Update()
     {
         Rockets();
-        if (!photonView.IsMine && valueRecive)
-        {
-            Health = lastHealth;
-        }
+       
     }
 
     private void OnDrawGizmos()
@@ -132,56 +128,58 @@ public class PlayerStats : MonoBehaviourPun,IPunObservable
         GameObject temp= PhotonNetwork.Instantiate(_powerstats._rockets.name, transform.position + new Vector3(0,10,0), Quaternion.identity);
         temp.GetComponent<Rigidbody>().AddForce(transform.up * 10, ForceMode.Impulse);
         temp.GetComponent<Rocket>().Target = LockedNearestTarget.transform;
-        temp.GetComponent<Rocket>().Damage = _powerstats.DamagePerRocket;
-        Debug.Log("Rocket gone");
     }
 
 
-    public void TakeDamage(int Damage)
+    public void TakeDamage(float Damage)
     {
-        if (Health - Damage > 0)
+        float damgetake = Health - Damage;
+        if (damgetake > 0)
         {        
                 Health -= Damage;
         }else
         {
-            GameSetupController gameSetupController = GameObject.FindObjectOfType<GameSetupController>();
-            transform.GetComponent<WheelVehicle>().enabled = false;
-            transform.GetComponent<EngineSoundManager>().enabled = false;
-            transform.GetComponent<Rigidbody>().useGravity = false;
-            transform.GetChild(0).gameObject.SetActive(false);
-            gameSetupController.RandomPointinArea(gameSetupController.SpawnArea_CenterPoint.position, Vector3.up, gameSetupController.SpawnArea_Radius);
-            Health = 0;
+           
             StartCoroutine(ReSpawn(ReSpawn_Time));
         }
     }
 
     IEnumerator ReSpawn(int sec)
     {
-        for (int i = 0; i < sec; i++)
+        Health = 0;
+        GameSetupController gameSetupController = GameObject.FindObjectOfType<GameSetupController>();
+        transform.GetComponent<WheelVehicle>().enabled = false;
+        transform.GetComponent<EngineSoundManager>().enabled = false;
+        transform.GetComponent<Rigidbody>().useGravity = false;
+        GameObject[] _child = transform.GetComponentsInParent<GameObject>();
+        foreach(GameObject obj in _child)
         {
+
+            obj.SetActive(false);
+        }
+        gameSetupController.RandomPointinArea(gameSetupController.SpawnArea_CenterPoint.position, Vector3.up, gameSetupController.SpawnArea_Radius);
+        UIManager.Instance._respawn.SetActive(true);
+        for (int i = sec; i > 0; i--)
+        {
+            UIManager.Instance._respawn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Respawn in " + i;
             yield return new WaitForSeconds(1);
+        }
+
+
+        UIManager.Instance._respawn.SetActive(false);
+
+        foreach (GameObject obj in _child)
+        {
+            obj.SetActive(true);
         }
         transform.GetComponent<WheelVehicle>().enabled = true;
         transform.GetComponent<EngineSoundManager>().enabled = true;
         transform.GetComponent<Rigidbody>().useGravity = true;
-        transform.GetChild(0).gameObject.SetActive(true);
         Health = 100;
 
 
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(Health);
-        }
-        else
-        {
-            this.lastHealth = (float)stream.ReceiveNext();
-            valueRecive = true;
-        }
-    }
 }
 [Serializable]
 public class PowerUps 
@@ -195,7 +193,7 @@ public class PowerUps
     public GameObject _rockets;
     public int FireRadiusRockets;
     public int NoOfRockets;
-    public int DamagePerRocket;
+    public float DamagePerRocket;
     [Header("Mines/Spike Power Up Stat : ")]
     public GameObject _mines;
     public int NoOfMines;
@@ -232,6 +230,7 @@ public class PowerUps
     {
         FireRadiusRockets = _constant.RocketFireRange;
         NoOfRockets = _constant.NumberofRockets;
+        DamagePerRocket = _constant.DamagePerRocket;
     }
 }
 
