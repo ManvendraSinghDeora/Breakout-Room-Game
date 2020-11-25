@@ -93,13 +93,14 @@ public class UIManager : MonoBehaviourPun
         }
 
     }
-    //IEnumerator RoomLeave(int time)
-    //{
-    //    for (int i = 0; i < time; i++)
-    //    {
-    //        //yield return new waite
-    //    }
-    //}
+    IEnumerator RoomLeave(int time)
+    {
+        for (int i = 0; i < time; i++)
+        {
+            OverConter.text = time.ToString();
+            yield return new WaitForSeconds(1);
+        }
+    }
     void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
