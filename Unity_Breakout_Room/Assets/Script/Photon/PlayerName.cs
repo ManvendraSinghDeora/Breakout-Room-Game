@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerName : MonoBehaviour
 {
     string DefaultName;
     private readonly string KeyName = "NickName";
-    public InputField _PlayerName;
+    public TMP_InputField _PlayerName;
     public GameObject LobbyPanel;
     private void Start()
     {
@@ -39,5 +40,9 @@ public class PlayerName : MonoBehaviour
             this.gameObject.SetActive(false);
             Photon.Pun.PhotonNetwork.JoinLobby();
         }
+    }
+     public void APPExit()
+    {
+        Application.Quit();
     }
 }

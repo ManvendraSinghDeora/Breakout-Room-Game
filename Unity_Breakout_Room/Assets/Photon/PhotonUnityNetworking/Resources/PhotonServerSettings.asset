@@ -43,6 +43,7 @@ MonoBehaviour:
   - SendDamagetoAll
   - RCP_Set_Health
   - Respawn
+  - SendDamage
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

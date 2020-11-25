@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ExitGames.Client.Photon;
+using TMPro;
 
 public class CustomMatchmakingRoom : MonoBehaviourPunCallbacks 
 {
@@ -20,7 +21,7 @@ public class CustomMatchmakingRoom : MonoBehaviourPunCallbacks
     private GameObject playerListingPrefab;
 
     [SerializeField]
-    private Text roomNameDisplay;
+    private TextMeshProUGUI roomNameDisplay;
 
     void ClearPlayerListings()
     {
