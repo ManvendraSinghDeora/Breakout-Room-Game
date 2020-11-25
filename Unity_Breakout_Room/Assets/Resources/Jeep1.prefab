@@ -20655,7 +20655,6 @@ MonoBehaviour:
   GunPointer: {fileID: 967096832}
   GunBackside: {fileID: 214151593}
   BulletPrefab: {fileID: 5939550119077107977, guid: 691ecdb9c52915843b9b075f37235633, type: 3}
-  canShoot: 0
 --- !u!114 &-1457839301015064774
 MonoBehaviour:
   m_ObjectHideFlags: 0

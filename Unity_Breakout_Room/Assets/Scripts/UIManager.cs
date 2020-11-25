@@ -19,8 +19,13 @@ public class UIManager : MonoBehaviourPun
     GameObject Player;
     // Start is called before the first frame update
 
-    public float timeRemaining = 5;
+    public float timeRemaining = 300;
     public bool timerIsRunning = false;
+
+
+    #region Game Over Region
+    public Text OverConter;
+    #endregion
 
     float totalkills;
     void Awake()
@@ -88,6 +93,13 @@ public class UIManager : MonoBehaviourPun
         }
 
     }
+    //IEnumerator RoomLeave(int time)
+    //{
+    //    for (int i = 0; i < time; i++)
+    //    {
+    //        //yield return new waite
+    //    }
+    //}
     void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
