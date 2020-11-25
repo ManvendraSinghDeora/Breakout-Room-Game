@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Gun : MonoBehaviourPun
+public class Gun : MonoBehaviourPunCallbacks
 {
-    public GameObject GunPointer;
+    public Transform GunPointer;
     public GameObject GunBackside;
     public GameObject BulletPrefab;
-
-
     private void Start()
     {
         if (GunBackside == null || GunPointer == null)
@@ -24,16 +22,16 @@ public class Gun : MonoBehaviourPun
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                GameObject Bul = PhotonNetwork.Instantiate("Bullet", GunPointer.transform.position, Quaternion.identity);
+                GameObject Bul = PhotonNetwork.Instantiate(BulletPrefab.name, GunPointer.transform.position, Quaternion.identity);
                 Bul.GetComponent<BulletScript>().Setup(directioncal());
-
             }
         }
     }
+
+
 
     Vector3 directioncal()
     {
         return (GunPointer.transform.position - GunBackside.transform.position).normalized;
     }
-   
 }

@@ -20635,6 +20635,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
+  - {fileID: 1309433179}
   - {fileID: -1457839301015064774}
   viewIdField: 0
   InstantiationId: 0
@@ -20651,9 +20652,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185c98f9cbba5d046a089e98b2f18edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GunPointer: {fileID: 967096831}
+  GunPointer: {fileID: 967096832}
   GunBackside: {fileID: 214151593}
   BulletPrefab: {fileID: 5939550119077107977, guid: 691ecdb9c52915843b9b075f37235633, type: 3}
+  canShoot: 0
 --- !u!114 &-1457839301015064774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20921,8 +20923,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 0eaa585bb183f3d42a34ec95b90ea3af, type: 2}
-  - {fileID: 2100002, guid: 57d23153e8a364f379241122438b5cc2, type: 3}
-  - {fileID: 2100004, guid: 57d23153e8a364f379241122438b5cc2, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class BulletScript : MonoBehaviourPun
 {
+
     #region Public Declarations
 
     public int Damage;
