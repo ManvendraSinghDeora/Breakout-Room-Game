@@ -6110,7 +6110,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1501424101, guid: 2804d3978f9bfc5459e3e94393ee88dd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501424102, guid: 2804d3978f9bfc5459e3e94393ee88dd, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 238.82483
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988516944, guid: 2804d3978f9bfc5459e3e94393ee88dd, type: 3}
+      propertyPath: m_text
+      value: Deaths:00
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988516944, guid: 2804d3978f9bfc5459e3e94393ee88dd, type: 3}
+      propertyPath: m_fontSize
+      value: 36.15
       objectReference: {fileID: 0}
     - target: {fileID: 4464037034976703266, guid: 2804d3978f9bfc5459e3e94393ee88dd, type: 3}
       propertyPath: m_LocalPosition.x

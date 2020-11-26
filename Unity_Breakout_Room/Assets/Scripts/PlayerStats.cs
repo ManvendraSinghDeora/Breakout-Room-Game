@@ -29,6 +29,7 @@ public class PlayerStats : MonoBehaviourPun
     public int ReSpawn_Time = 3;
     public float Last_Health;
     public localMang _Local;
+    int deathcount = 0;
     void Awake()
     {
         if (Instance == null)
@@ -80,6 +81,8 @@ public class PlayerStats : MonoBehaviourPun
 
         if (Health <= 0)
         {
+            deathcount = deathcount + 1;
+            GameObject.FindObjectOfType<UIManager>().Killtext.text = "Deaths:"+deathcount.ToString();
             if (photonView.IsMine)
             {
                 _Local.Respawn();

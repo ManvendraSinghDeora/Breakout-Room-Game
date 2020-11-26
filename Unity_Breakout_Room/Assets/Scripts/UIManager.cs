@@ -64,14 +64,21 @@ public class UIManager : MonoBehaviourPun
             initilize();
 
         }
-        UpdateBoostandHealth();
+        if (Player !=null)
+        {
+            UpdateBoostandHealth();
+        }
         INgameTimer();
     }
     void UpdateBoostandHealth()
     {
-        _healthBar.fillAmount = PlayerStats.Instance.Health / 100;
-        _boostbar.fillAmount =  Player.GetComponent<WheelVehicle>().Boost / Player.GetComponent<WheelVehicle>().MaxBoost;
-        _boostbarbg.fillAmount = Player.GetComponent<WheelVehicle>().Boost / Player.GetComponent<WheelVehicle>().MaxBoost;
+        if (Player !=null)
+        {
+            _healthBar.fillAmount = PlayerStats.Instance.Health / 100;
+            _boostbar.fillAmount = Player.GetComponent<WheelVehicle>().Boost / Player.GetComponent<WheelVehicle>().MaxBoost;
+            _boostbarbg.fillAmount = Player.GetComponent<WheelVehicle>().Boost / Player.GetComponent<WheelVehicle>().MaxBoost;
+        }
+        
     }
 
     void INgameTimer()

@@ -2428,4 +2428,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/LogoScene.unity
   - Assets/Scenes/RishabhScene.unity
-  playerPath: E:/2020_Backup/Backup/BrackOut/Unity_Breakout_Room.exe
+  playerPath: E:/BreakOut/Unity_Breakout_Room.exe

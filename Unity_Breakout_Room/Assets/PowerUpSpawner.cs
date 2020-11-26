@@ -30,6 +30,7 @@ public class PowerUpSpawner : MonoBehaviourPun
     public void PowerupPicked(int i)
     {
         Destroy(current);
+        current = null;
         GameObject temp = PhotonView.Find(i).gameObject;
         PowerUpID(temp);
     }
@@ -43,24 +44,28 @@ public class PowerUpSpawner : MonoBehaviourPun
         {
             other.gameObject.GetComponent<PlayerStats>()._powerstats.Repair();
         }
+        
             StartCoroutine(Spawner());
     }
 
     IEnumerator Spawner()
     {
-
-        int i = Random.Range(1, 10);
-        yield return new WaitForSeconds(_cont.PowerUpSpawnerTime);
-        if (i % 2 == 0)
+        if (current == null)
         {
-            current = PhotonNetwork.Instantiate("RocketPower", transform.position + new Vector3(0, 2, 0), Quaternion.identity);
-            CurrentPowerup = 1;
+            int i = Random.Range(1, 10);
+            yield return new WaitForSeconds(_cont.PowerUpSpawnerTime);
+            if (i % 2 == 0)
+            {
+                current = PhotonNetwork.Instantiate("RocketPower", transform.position + new Vector3(0, 2, 0), Quaternion.identity);
+                CurrentPowerup = 1;
+            }
+            if (i % 2 != 0)
+            {
+                current = PhotonNetwork.Instantiate("HealthPower", transform.position + new Vector3(0, 2, 0), Quaternion.identity);
+                CurrentPowerup = 2;
+            }
         }
-        if (i % 2 != 0)
-        {
-            current = PhotonNetwork.Instantiate("HealthPower", transform.position + new Vector3(0, 2, 0), Quaternion.identity);
-            CurrentPowerup = 2;
-        }
+        
 
     }
 }
