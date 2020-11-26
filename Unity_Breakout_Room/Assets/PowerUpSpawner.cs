@@ -11,7 +11,8 @@ public class PowerUpSpawner : MonoBehaviourPun
     public GameObject current;
     void Start()
     {
-        StartCoroutine(Spawner());
+        if(PhotonNetwork.IsMasterClient)
+            StartCoroutine(Spawner());
     }
 
     private void OnTriggerExit(Collider other)

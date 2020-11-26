@@ -81,10 +81,11 @@ public class PlayerStats : MonoBehaviourPun
 
         if (Health <= 0)
         {
-            deathcount = deathcount + 1;
-            GameObject.FindObjectOfType<UIManager>().Killtext.text = "Deaths:"+deathcount.ToString();
+            
             if (photonView.IsMine)
             {
+                deathcount = deathcount + 1;
+                GameObject.FindObjectOfType<UIManager>().Killtext.text = "Deaths:" + deathcount.ToString();
                 _Local.Respawn();
             }
         }
