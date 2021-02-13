@@ -1,0 +1,10 @@
+1. Rocket nev
+2. item spawn
+3. Art
+4. World map
+5. gun system
+6. kill feed
+7. HUD
+8. player feed (Top one).
+9. spawn player check.
+10 . some small fix like room player count and etc.
